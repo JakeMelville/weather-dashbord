@@ -1,13 +1,17 @@
+var time = new Date().toLocaleTimeString();
+
 var searchBtn = document.querySelector(".btn");
 var baseUrl = "https://api.openweathermap.org/data/2.5/forecast?q=";
 var apiKey = "&appid=c325d98bc2a304d27df0719cfbbccb4f";
 var units = "&units=imperial";
-var currentConditions = document.getElementById("current-conditions");
-var temp = document.getElementById("current");
+var date = document.getElementById("date");
+
 
 
 function locationSelect(event) {
   event.preventDefault();
+
+  date.textContent = time;
 
   var searchInput = document.querySelector('#search-input').value;
 
@@ -25,11 +29,19 @@ function locationSelect(event) {
     // })
     .then(function (weatherData) {
       //pass in data that we are expecting to get back from the fetch request
-      // console.log(weatherData.list[0].main.temp)
-    var currentTemp = document.getElementById("degrees");
-    currentTemp.textContent = weatherData.list[0].main.temp;
-    temp.append(currentTemp);
-    console.log(currentTemp);
+      console.log(weatherData)
+
+    var currentTemp = document.getElementById("temp");
+    currentTemp.textContent = "Temperature: " + weatherData.list[0].main.temp + " F";
+
+    var currentHumidity = document.getElementById("humidity");
+    currentHumidity.textContent = "Humidity: " + weatherData.list[0].main.humidity;
+
+    var currentWind = document.getElementById("windspeed");
+    currentWind.textContent = "Wind Speed: " + weatherData.list[0].wind.speed;
+
+    var currentUvIndex = document.getElementById("uvIndex");
+    currentUvIndex.textContent = "UV Index: " + weatherData.list[0].humidity;
     })
     .catch(error => console.log(error)) //to catch error
 
@@ -41,7 +53,3 @@ function locationSelect(event) {
 
 
 searchBtn.addEventListener("click", locationSelect);
-searchBtn.addEventListener("click", function() {
-  var line = document.querySelector("#condtions");
-  line.classList.remove(".conditions");
-})

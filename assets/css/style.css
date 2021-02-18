@@ -12,6 +12,9 @@ body {
 h1 {
     color: white;
 }
-.conditions {
+/* .date {
     visibility: hidden;
+} */
+ul {
+    list-style-type: none;
 }
