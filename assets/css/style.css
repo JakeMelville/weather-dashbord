@@ -1,8 +1,14 @@
+body {
+    background: skyblue;
+}
+
 #header {
-    background-color: skyblue;
     justify-content: space-around;
 }
 .dash {
     text-align: center;
     justify-content: center;
+}
+h1 {
+    color: white;
 }
