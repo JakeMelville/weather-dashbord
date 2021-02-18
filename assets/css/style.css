@@ -12,3 +12,6 @@ body {
 h1 {
     color: white;
 }
+.conditions {
+    visibility: hidden;
+}

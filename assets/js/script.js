@@ -26,9 +26,9 @@ function locationSelect(event) {
     .then(function (weatherData) {
       //pass in data that we are expecting to get back from the fetch request
       // console.log(weatherData.list[0].main.temp)
-    var currentTemp = document.createElement("h1");
+    var currentTemp = document.getElementById("degrees");
     currentTemp.textContent = weatherData.list[0].main.temp;
-    temp.append(currentTemp)
+    temp.append(currentTemp);
     console.log(currentTemp);
     })
     .catch(error => console.log(error)) //to catch error
@@ -41,3 +41,7 @@ function locationSelect(event) {
 
 
 searchBtn.addEventListener("click", locationSelect);
+searchBtn.addEventListener("click", function() {
+  var line = document.querySelector("#condtions");
+  line.classList.remove(".conditions");
+})
