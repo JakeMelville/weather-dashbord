@@ -19,6 +19,7 @@
       <input id="search-input" class="form-input w-25" type="text" placeholder="City/Town Name">
       <button class="btn btn-info">Search</button>
     </div>
+    <!-- current conditions -->
     <div id="current-conditions">
       <h1 id="date" class="date"></h1>
       <ul>
@@ -29,16 +30,45 @@
         <li id="uvIndex"></li>
         <li id="five-day"></li>
       </ul>
+
+      <!-- 5-day forcast -->
+
+      <div class="row">
       <h1 id="forcast"></h1>
       <ul id="today">
         <li id="working-date"></li>
         <li id="icon"></li>
         <li id="degrees"></li>
         <li id="humid"></li>
-
       </ul>
-      <!-- <button id="future" class="btn btn-info">See Future Conditions</button> -->
+      <ul id="tmrw">
+        <li id="tmrw-working-date"></li>
+        <li id="tmrw-icon"></li>
+        <li id="tmrw-degrees"></li>
+        <li id="tmrw-humid"></li>
+      </ul>
+      <ul id="two-days">
+        <li id="two-working-date"></li>
+        <li id="two-icon"></li>
+        <li id="two-degrees"></li>
+        <li id="two-humid"></li>
+      </ul>
+      <ul id="three-days">
+        <li id="three-working-date"></li>
+        <li id="three-icon"></li>
+        <li id="three-degrees"></li>
+        <li id="three-humid"></li>
+      </ul>
+      <ul id="four-days">
+        <li id="four-working-date"></li>
+        <li id="four-icon"></li>
+        <li id="four-degrees"></li>
+        <li id="four-humid"></li>
+      </ul>
     </div>
+
+    <!-- <button id="future" class="btn btn-info">See Future Conditions</button> -->
+  </div>
   </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="./assets/js/script.js"></script>
