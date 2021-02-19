@@ -21,3 +21,6 @@ ul {
 #city {
     font-weight: bold;
 }
+#future {
+    visibility: hidden;
+}
