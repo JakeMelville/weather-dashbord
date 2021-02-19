@@ -3,6 +3,7 @@ var searchBtn = document.querySelector(".btn");
 var baseUrl = "https://api.openweathermap.org/data/2.5/forecast?q=";
 var apiKey = "&appid=c325d98bc2a304d27df0719cfbbccb4f";
 var units = "&units=imperial";
+var fiveHeader = document.getElementById("forcast")
 var date = document.getElementById("date");
 var timeDate = moment().format('MMMM Do YYYY, h:mma');
 
@@ -10,7 +11,7 @@ var uvUrl = "https://api.openweathermap.org/data/2.5/onecall?"
 var lat = "lat=";
 var lon = "&lon=";
 
-var fiveDay = "api.openweathermap.org/data/2.5/forecast?q=";
+var fiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
 // var latSearch = 0;
 // var lonSearch = 0;
@@ -20,9 +21,10 @@ function locationSelect(event) {
   event.preventDefault();
 
   date.textContent = timeDate;
-
+  
 
   var searchInput = document.querySelector('#search-input').value;
+  fiveHeader.textContent = "5 Day Forcast for " + searchInput + ":"
 
   if (!searchInput) {
     confirm('Please select a location');
@@ -57,11 +59,13 @@ function locationSelect(event) {
       var currentUvIndex = document.getElementById("uvIndex");
       currentUvIndex.textContent = "UV Index: " + weatherData.list[0].humidity;
 
-      // var lat = weatherData.city.coord.lat;
-      // window.latSearch = lat;
-
-      // var lon = weatherData.city.coord.lon;
-      // window.lonSearch = lon;
+      var today = document.getElementById("today");
+      var todayIcon = weatherData.list[0].weather[0].icon;
+      // if (todayIcon = "04d") {
+      //   today.textContent = todayIcon;
+      // }
+      console.log("today icon:", todayIcon);
+      today.textContent = "Todays Weather : " + weath
     })
     .catch(error => console.log(error)) //to catch error
 
@@ -69,6 +73,8 @@ function locationSelect(event) {
   //   .then(response => response.json())
   //   .then(function (data) {
       
+  //     var forecast = document.getElementById("five-day");
+  //     console.log(data)
   //   })
 }
 
