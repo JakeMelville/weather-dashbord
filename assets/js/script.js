@@ -67,11 +67,14 @@ function locationSelect(event) {
       for (var i = 0; i <= 32; i += 8) {
 
         document.getElementById(`day-${i}`).textContent = weatherData.list[i].dt_txt.slice(5, 10);    
-        document.getElementById(`icon-${i}`).textContent = weatherData.list[i].weather[0].icon;
+        document.getElementById(`icon-${i}`).src = "http://openweathermap.org/img/w/" + weatherData.list[i].weather[0].icon + ".png";
         document.getElementById(`degrees-${i}`).textContent = "Temp: " + weatherData.list[i].main.temp + "F";
         document.getElementById(`humid-${i}`).textContent = "Humidity: " + weatherData.list[i].main.humidity;
         
         // console.log(weatherData.list[i])
+        if (weatherData.list[i].weather[0].main = "Clouds"){
+            document.getElementById(`icon-${i}`).textContent
+      }
       }
 
 // keeping the data below for myself- good example of how to incoorperate data into above loop.
@@ -99,6 +102,8 @@ function locationSelect(event) {
 //       var fourDays = document.getElementById("day-32");
 //       var fourDaysDate = weatherData.list[32].dt_txt;
 //       fourDays.textContent = fourDaysDate.slice(5, 10);
+
+     
 
     })
     .catch(error => console.log(error)) //to catch error
