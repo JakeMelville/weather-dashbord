@@ -6,21 +6,23 @@ var units = "&units=imperial";
 
 var date = document.getElementById("date");
 var timeDate = moment().format('MMMM Do YYYY, h:mma');
-// var tmrwDay = moment().add(1, 'days').calendar;
-// var followingDay = moment().add(2, 'days').calendar;
 
 var fiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
-// var latSearch = 0;
-// var lonSearch = 0;
-
+var searchHistory = [];
 
 function locationSelect(event) {
   event.preventDefault();
+      var history = {
+            previous: document.getElementById("search-input").value
+      }
+      searchHistory.push(history);
+      // console.log(searchHistory);
+      localStorage.setItem('City', JSON.stringify(searchHistory))
+      
 
   date.textContent = timeDate;
   
-
   var searchInput = document.querySelector('#search-input').value;
   var fiveHeader = document.getElementById("forcast");
   fiveHeader.textContent = "5 Day Forcast for " + searchInput + ":"
@@ -60,6 +62,8 @@ function locationSelect(event) {
 
       var currentWind = document.getElementById("windspeed");
       currentWind.textContent = "Wind Speed: " + weatherData.list[0].wind.speed;
+
+      document.getElementById(`icon`).src = "http://openweathermap.org/img/w/" + weatherData.list[0].weather[0].icon + ".png";
 
       
 //future conditions

@@ -47,6 +47,6 @@ ul {
 .conditions-future {
     justify-content: space-between;
 }
-/* .wi {
-    visibility: hidden;
-} */
+#weather-icons {
+    text-align: center;
+}
