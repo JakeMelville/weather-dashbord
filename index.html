@@ -14,6 +14,7 @@
 </head>
 
 <body>
+  <!-- header is displayed right away- contains my webpage title and a search bar -->
   <div id="header" class="row w-100">
     <div class="dash col-12 align-center">
       <h1 class="col">Weather Dashboard</h1>
@@ -21,9 +22,10 @@
       <button class="btn btn-info">Search</button>
     </div>
     <!-- current conditions -->
-    <div id="current-conditions" class="row">
+    <div id="current-conditions" class="row w-100">
+      <ul id="sh" class="col-12"></ul>
       <h1 id="date" class="date col-12"></h1>
-      <ul class="row">
+      <ul class="row w-100">
         <li id="city" class="col-12"></li>
         <li id="temp" class="col-12"></li>
         <li id="humidity" class="col-12"></li>
@@ -38,6 +40,7 @@
       <div class="row w-100 conditions-future">
         <div class="col">
           <ul>
+            <!-- today-     the number associated w each id is where it falls in my weatherData array. Goes up by 8 because the data is broken down 3 hours at a time.-->
             <li id="day-0"></li>
             <li><img id ="icon-0" src=""> </li>
             <li id="degrees-0"></li>
@@ -46,6 +49,7 @@
         </div>
         <div class="col">
           <ul>
+            <!-- tomorrow -->
             <li id="day-8"></li>
             <li><img id="icon-8" src=""></li>
             <li id="degrees-8"></li>
@@ -54,6 +58,7 @@
         </div>
         <div class="col">
           <ul>
+            <!-- 2 days from now -->
             <li id="day-16"></li>
             <li><img id="icon-16" src=""></li>
             <li id="degrees-16"></li>
@@ -62,6 +67,7 @@
         </div>
         <div class="col">
           <ul>
+            <!-- 3 days from now -->
             <li id="day-24"></li>
             <li><img id="icon-24" src=""></li>
             <li id="degrees-24"></li>
@@ -70,6 +76,7 @@
         </div>
         <div class="col">
           <ul>
+            <!-- 4 days from now -->
             <li id="day-32"></li>
             <li><img id="icon-32" src=""></li>
             <li id="degrees-32"></li>
@@ -78,12 +85,10 @@
         </div>
       </div> 
 
-      <!-- <button id="future" class="btn btn-info">See Future Conditions</button> -->
     </div>
   </div>
   
- 
-  
+ <!-- moment script for time  -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
   <script src="./assets/js/script.js"></script>
 
