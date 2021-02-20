@@ -30,7 +30,6 @@ function locationSelect(event) {
     return;
   }
 
-  
   var queryString = baseUrl + searchInput + units + apiKey;
   console.log(queryString)
 
@@ -74,6 +73,10 @@ function locationSelect(event) {
         
         // console.log(weatherData.list[i])
       }
+
+// keeping the data below for myself- good example of how to incoorperate data into above loop.
+
+
 // // today
 //       var today = document.getElementById("day-0");
 //       var todayDate = weatherData.list[0].dt_txt;
@@ -104,14 +107,3 @@ function locationSelect(event) {
 
 
 searchBtn.addEventListener("click", locationSelect);
-
-
-
-
-
-      // var todayIcon = weatherData.list[0].weather[0].icon;
-      // if (todayIcon = "04d") {
-      //   today.textContent = todayIcon;
-      // }
-      // console.log("today icon:", todayIcon);
-      // today.textContent = "Todays Weather : " + weather
