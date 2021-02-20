@@ -9,11 +9,6 @@ var timeDate = moment().format('MMMM Do YYYY, h:mma');
 // var tmrwDay = moment().add(1, 'days').calendar;
 // var followingDay = moment().add(2, 'days').calendar;
 
-
-var uvUrl = "https://api.openweathermap.org/data/2.5/onecall?"
-var lat = "lat=";
-var lon = "&lon=";
-
 var fiveDay = "https://api.openweathermap.org/data/2.5/forecast?q=";
 
 // var latSearch = 0;
@@ -35,8 +30,7 @@ function locationSelect(event) {
     return;
   }
 
-  var stringQuery = fiveDay + searchInput + apiKey;
-  console.log(stringQuery)
+  
   var queryString = baseUrl + searchInput + units + apiKey;
   console.log(queryString)
 
@@ -47,6 +41,14 @@ function locationSelect(event) {
     .then(function (weatherData) {
       //pass in data that we are expecting to get back from the fetch request
       console.log(weatherData)
+      
+      fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${weatherData.city.coord.lat}&lon=${weatherData.city.coord.lon}${apiKey}`)
+        .then(response => response.json())
+        .then(uvData => {
+          var currentUvIndex = document.getElementById("uvIndex");
+          currentUvIndex.textContent = "UV Index: " + uvData.current.uvi;
+
+        }) 
 // current conditions
       var city = document.getElementById("city");
       city.textContent = "Current conditions in " + weatherData.city.name + ":";
@@ -60,49 +62,58 @@ function locationSelect(event) {
       var currentWind = document.getElementById("windspeed");
       currentWind.textContent = "Wind Speed: " + weatherData.list[0].wind.speed;
 
-      var currentUvIndex = document.getElementById("uvIndex");
-      currentUvIndex.textContent = "UV Index: " + weatherData.list[0].humidity;
-//future conditions
-      var today = document.getElementById("today");
-      var todayDate = weatherData.list[0].dt_txt;
-      today.textContent = todayDate.slice(0, 10);
-
-      var tmrw = document.getElementById("tmrw");
-      var tmrwDate = weatherData.list[8].dt_txt;
-      tmrw.textContent = tmrwDate.slice(0, 10);
-
-      var followingDay = document.getElementById("two-days");
-      var followingDayDate = weatherData.list[16].dt_txt;
-      followingDay.textContent = followingDayDate.slice(0, 10);
       
-      var threeDays = document.getElementById("three-days");
-      var threeDaysDate = weatherData.list[24].dt_txt;
-      threeDays.textContent = threeDaysDate.slice(0, 10);
+//future conditions
 
-      var fourDays = document.getElementById("four-days");
-      var fourDaysDate = weatherData.list[32].dt_txt;
-      fourDays.textContent = fourDaysDate.slice(0, 10);
+      for (var i = 0; i <= 32; i += 8) {
+        document.getElementById(`icon-${i}`).textContent = weatherData.list[i].weather[0].icon;
+        document.getElementById(`degrees-${i}`).textContent = "Temp: " + weatherData.list[i].main.temp + "F";
+        document.getElementById(`humid-${i}`).textContent = "Humidity: " + weatherData.list[i].main.humidity;
+        
+        // console.log(weatherData.list[i])
+      }
+//today
+//       var today = document.getElementById("today");
+//       var todayDate = weatherData.list[0].dt_txt;
+//       today.textContent = todayDate.slice(5, 10);
+
+// //tmrw
+//       var tmrw = document.getElementById("tmrw");
+//       var tmrwDate = weatherData.list[8].dt_txt;
+//       tmrw.textContent = tmrwDate.slice(5, 10);
+      
+//       var twoDegrees = document.getElementById("two-degrees");
+//       twoDegrees.textContent = weatherData.list[8].main.temp;
+//       console.log(twoDegrees);
+// //two-days
+//       var followingDay = document.getElementById("two-days");
+//       var followingDayDate = weatherData.list[16].dt_txt;
+//       followingDay.textContent = followingDayDate.slice(5, 10);
+// //three-days      
+//       var threeDays = document.getElementById("three-days");
+//       var threeDaysDate = weatherData.list[24].dt_txt;
+//       threeDays.textContent = threeDaysDate.slice(5, 10);
+// //four-days
+//       var fourDays = document.getElementById("four-days");
+//       var fourDaysDate = weatherData.list[32].dt_txt;
+//       fourDays.textContent = fourDaysDate.slice(5, 10);
 
 
-      // var todayIcon = weatherData.list[0].weather[0].icon;
-      // if (todayIcon = "04d") {
-      //   today.textContent = todayIcon;
-      // }
-      console.log("today icon:", todayIcon);
-      today.textContent = "Todays Weather : " + weather
     })
     .catch(error => console.log(error)) //to catch error
 
-  // fetch(stringQuery)
-  //   .then(response => response.json())
-  //   .then(function (data) {
-      
-  //     var forecast = document.getElementById("five-day");
-  //     console.log(data)
-  //   })
 }
 
 
 searchBtn.addEventListener("click", locationSelect);
 
 
+
+
+
+      // var todayIcon = weatherData.list[0].weather[0].icon;
+      // if (todayIcon = "04d") {
+      //   today.textContent = todayIcon;
+      // }
+      // console.log("today icon:", todayIcon);
+      // today.textContent = "Todays Weather : " + weather
